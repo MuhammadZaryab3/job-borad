@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body, #root {
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #F5F5FF;
+    color: #1E1B4B;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root { display: flex; flex-direction: column; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center gap-2 justify-center;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-50 font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center gap-2 justify-center;
+  }
+
+  .btn-ghost {
+    @apply text-gray-500 hover:text-primary-500 hover:bg-primary-50 font-medium px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-2;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-primary-50 p-6;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-dark-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition-all text-sm;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-purple { @apply badge bg-primary-100 text-primary-600; }
+  .badge-green  { @apply badge bg-green-100 text-green-700; }
+  .badge-orange { @apply badge bg-orange-100 text-orange-700; }
+  .badge-red    { @apply badge bg-red-100 text-red-600; }
+  .badge-gray   { @apply badge bg-gray-100 text-gray-600; }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer;
+  }
+
+  .sidebar-link-active {
+    @apply sidebar-link bg-white text-primary-600 shadow-sm;
+  }
+
+  .sidebar-link-inactive {
+    @apply sidebar-link text-indigo-200 hover:bg-dark-700 hover:text-white;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C4C1FF; border-radius: 99px; }
