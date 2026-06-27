@@ -16,14 +16,13 @@ export default function JobsPage() {
 
   useEffect(() => {
     fetchJobs()
-  }, [search, type, skill])
+  }, [search, type])
 
   const fetchJobs = async () => {
     try {
       const params = {}
       if (search) params.search = search
       if (type !== 'All') params.type = type
-      if (skill !== 'All Skills') params.skill = skill
       const { data } = await api.get('/jobs', { params })
       setJobs(data.jobs)
     } catch {
