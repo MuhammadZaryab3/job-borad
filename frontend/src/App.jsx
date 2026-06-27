@@ -19,6 +19,12 @@ function ProtectedRoute({ children, role }) {
   if (role && user.role !== role) return <Navigate to="/" replace />
   return children
 }
+function PublicRoute({ children }) {
+  const { user, loading } = useAuth()
+  if (loading) return null
+  if (user) return <Navigate to={user.role === 'company' ? '/company/dashboard' : '/applicant/dashboard'} replace />
+  return children
+}
 
 export default function App() {
   return (
@@ -29,8 +35,8 @@ export default function App() {
           {/* Public */}
           <Route path="/" element={<JobsPage />} />
           <Route path="/jobs/:id" element={<JobDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
 
           {/* Applicant */}
           <Route path="/applicant/dashboard" element={<ProtectedRoute role="applicant"><ApplicantDashboard /></ProtectedRoute>} />
