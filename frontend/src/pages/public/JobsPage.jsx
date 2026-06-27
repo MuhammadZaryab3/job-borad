@@ -5,14 +5,12 @@ import { useAuth } from '../../context/AuthContext'
 import api from '../../utils/api'
 
 const TYPES = ['All', 'Full-time', 'Part-time', 'Remote', 'Freelance', 'Internship']
-const SKILLS = ['All Skills', 'React', 'Node.js', 'Python', 'Design', 'Marketing', 'DevOps']
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [type, setType] = useState('All')
-  const [skill, setSkill] = useState('All Skills')
   const { user } = useAuth()
   const navigate = useNavigate()
 
@@ -71,14 +69,14 @@ export default function JobsPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">Find Your Dream Job</h1>
           <p className="text-indigo-300 mb-8 text-sm sm:text-base">Thousands of jobs from top companies — apply in one click</p>
-          <div className="flex gap-3 bg-white rounded-2xl p-2 shadow-xl">
-            <div className="flex-1 flex items-center gap-2 px-3">
+          <div className="flex items-center gap-2 bg-white rounded-2xl p-2 shadow-xl">
+            <div className="flex-1 flex items-center gap-2 px-3 min-w-0">
               <Search size={18} className="text-gray-400 flex-shrink-0" />
               <input value={search} onChange={e => setSearch(e.target.value)}
-                placeholder="Job title, company, or keyword..."
-                className="flex-1 outline-none text-sm text-dark-900 placeholder-gray-400" />
+                placeholder="Search jobs..."
+                className="flex-1 outline-none text-sm text-dark-900 placeholder-gray-400 min-w-0" />
             </div>
-            <button className="btn-primary text-sm px-5 py-2.5 rounded-xl">Search</button>
+            <button className="btn-primary text-sm px-4 py-2.5 rounded-xl flex-shrink-0 whitespace-nowrap">Search</button>
           </div>
         </div>
       </div>
@@ -94,15 +92,7 @@ export default function JobsPage() {
           ))}
         </div>
 
-        {/* Skill tags */}
-        <div className="flex gap-2 overflow-x-auto pb-3 mb-6 scrollbar-hide">
-          {SKILLS.map(s => (
-            <button key={s} onClick={() => setSkill(s)}
-              className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                skill === s ? 'bg-primary-100 text-primary-600 border border-primary-300' : 'bg-white text-gray-500 border border-gray-200 hover:border-primary-200'
-              }`}>{s}</button>
-          ))}
-        </div>
+      
 
         {/* Results header */}
         <div className="flex items-center justify-between mb-5">
