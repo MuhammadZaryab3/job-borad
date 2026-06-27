@@ -32,7 +32,7 @@ export default function JobDetail() {
       const fd = new FormData()
       fd.append('resume', resume)
       fd.append('coverLetter', coverLetter)
-      await api.post(`/jobs/${id}/apply`, fd)
+      await api.post(`/applications/jobs/${id}/apply`, fd)
       toast.success('Application submitted!')
       setApplied(true)
     } catch (err) {
