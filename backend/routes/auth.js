@@ -17,8 +17,12 @@ router.post('/register', async (req, res) => {
     const exists = await User.findOne({ email })
     if (exists) return res.status(409).json({ message: 'Email already registered' })
     const user = await User.create({ name, email, password, role })
-    await sendWelcomeEmail({ to: email, name })
-    res.status(201).json({ token: signToken(user._id), user: user.toSafeObject() })
+try {
+  await sendWelcomeEmail({ to: email, name })
+} catch (emailErr) {
+  console.error('Welcome email failed:', emailErr.message)
+}
+res.status(201).json({ token: signToken(user._id), user: user.toSafeObject() })
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
