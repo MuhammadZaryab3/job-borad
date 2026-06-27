@@ -2,6 +2,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 import { sendStatusEmail } from '../utils/email.js'
+import { sendWelcomeEmail } from '../utils/email.js'
 
 const router = express.Router()
 
